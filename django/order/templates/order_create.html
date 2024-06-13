@@ -1,0 +1,77 @@
+{% extends 'base.html' %}
+{% load i18n %}
+{% load crispy_forms_tags %}
+
+
+{% block title %}
+    {% trans "Your Order" %}
+{% endblock title %}
+
+
+{% block content %}
+<div class="container">
+    <div class="row">
+        <div class="col">
+            <h1 class="text-center m-4">{% trans "Purchase" %}</h1>
+            <table class="table table-striped">
+                <thead>
+                    <tr>
+                        <th style="width: 20%">{% trans "Image" %}</th>
+                        <th style="width: 20%">{% trans "Product" %}</th>
+                        <th style="width: 20%">{% trans "Quantity" %}</th>
+                        <th style="width: 20%">{% trans "Unit price" %}</th>
+                        <th style="width: 20%">{% trans "Total Price" %}</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for product in cart %}
+                    <tr>
+                        <td>
+                            <a href="{{product.get_absolute_url}}">
+                                <img
+                                    class="rounded-lg shadow"
+                                    src="{{product.get_first_image}}"
+                                    height="100"
+                                    width="100"
+                                    alt="" />
+                            </a>
+                        </td>
+                        <td>{{product.names|getattr:request.LANGUAGE_CODE}}</td>
+                        <td>{% num_trans product.requested_quantity %}</td>
+                        <td>{{product.unit_price|P}}</td>
+                        <td>{{product.total_price|P}}</td>
+                    </tr>
+                    {% endfor %}
+                    <tr>
+                        <td colspan="4"></td>
+                        {% with cart.total_price as total_price %}
+                            {% if cart.coupon %}
+                            <td>
+                                <span class="text-danger text-decoration-line-through"
+                                    >{{ total_price|P }}</span
+                                ><br />
+                                <span class="text-success"
+                                    >{{ total_price|sub:cart.coupon.discount|P }}</span
+                                >
+                                <span class="badge bg-success">{% trans "Coupon Applied" %}</span>
+                            </td>
+                            {% else %}
+                            <td><span>{{ total_price|P }}</span></td>
+                            {% endif %}
+                        {% endwith %}
+                    </tr>
+                </tbody>
+            </table>
+
+            <div class="row my-2 justify-content-center">
+                <div class="col-lg-6 col-md-8 mx-auto">
+                    <form method="POST">
+                        {% csrf_token %} {{form|crispy}}
+                        <button style="width: 100%;" type="submit" class="btn btn-success my-3">{% trans "Purchase" %}</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock content %}

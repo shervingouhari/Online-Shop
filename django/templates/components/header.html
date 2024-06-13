@@ -1,0 +1,50 @@
+{% load i18n %}
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <div class="container">
+        <a class="navbar-brand me-3" href="{% url 'shop:list' %}">{% trans "Online Shop" %}</a>
+        <button
+            class="navbar-toggler"
+            type="button"
+            data-bs-toggle="collapse"
+            data-bs-target="#navbarNav"
+            aria-controls="navbarNav"
+            aria-expanded="false"
+            aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+
+        {% get_current_language as LANGUAGE_CODE %}
+        {% get_available_languages as LANGUAGES %}
+
+        <form action="{% url 'set_language' %}" method="POST" class="language-selector">
+            {% csrf_token %}
+            <div class="btn-group">
+                <select name="language" onchange="this.form.submit()" class="form-select-sm bg-dark border-light text-light">
+                    {% for lang_code, lang_name in LANGUAGES %}
+                        {% if lang_code == LANGUAGE_CODE %}
+                            <option value="{{ lang_code }}" selected>{{ lang_name }}</option>
+                        {% else %}
+                            <option value="{{ lang_code }}">{{ lang_name }}</option>
+                        {% endif %}
+                    {% endfor %}
+                </select>
+            </div>
+        </form>
+
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav ms-auto">
+                <li class="nav-item">
+                    <a class="nav-link" href="{% url 'shop:list' %}">{% trans "Home" %}</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{% url 'cart:detail' %}">
+                        <span>
+                            <i class="fas fa-shopping-cart"></i>
+                            <span class="badge bg-primary">{% num_trans cart|length %}</span>
+                        </span>
+                    </a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</nav>

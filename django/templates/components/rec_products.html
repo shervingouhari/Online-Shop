@@ -1,0 +1,31 @@
+{% load i18n %}
+{% if rec_products %}
+<hr class="my-4" />
+<div class="container">
+    <div class="row justify-content-center">
+        <div class="col-9">
+            <h2 class="mb-5 text-center">{% trans "Recommended Products" %}</h2>
+            <div class="row mb-4">
+                {% for product in rec_products %}
+                <div class="col flex-grow-0">
+                    <a href="{{product.get_absolute_url}}" class="text-decoration-none text-secondary">
+                        <div class="card mb-2" style="width: 18rem; height: 300px">
+                            <img
+                                class="card-img-top mb-2"
+                                src="{{product.get_first_image}}"
+                                width="200"
+                                height="200"
+                                alt="Card image cap" />
+                            <div class="card-body">
+                                <h5 class="card-title text-center">{{product.name}}</h5>
+                                <p class="card-text">{{product.price|P}}</p>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+</div>
+{% endif %}

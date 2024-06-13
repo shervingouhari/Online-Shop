@@ -1,0 +1,78 @@
+{% extends "base.html" %}
+{% load i18n %}
+
+
+{% block title %}
+    {{ product.names|getattr:request.LANGUAGE_CODE }}
+{% endblock title %}
+  
+  
+{% block content %}
+<div class="container-fluid">
+    <h1 class="text-center m-4">{{ product.names|getattr:request.LANGUAGE_CODE }}</h1>
+    <div id="productCarousel" class="carousel slide position-relative" data-bs-ride="carousel">
+        <div class="carousel-inner">
+            {% for image in product.images %}
+            <div class="carousel-item {% if forloop.first %}active{% endif %}">
+                <img
+                    src="{{ image.get_url }}"
+                    class="d-block w-100 rounded-15"
+                    style="max-height: 400px; object-fit: contain"
+                    alt="Product Image" />
+            </div>
+            {% endfor %}
+        </div>
+        {% if product.images|length > 1 %}
+        <button
+            class="carousel-control-prev"
+            type="button"
+            data-bs-target="#productCarousel"
+            data-bs-slide="prev"
+            style="position: absolute; top: 50%; left: 400px; transform: translateY(-50%); width: 40px; height: 40px">
+            <span
+                class="carousel-control-prev-icon"
+                aria-hidden="true"
+                style="background-color: black; border-radius: 30%; padding: 10px"></span>
+            <span class="visually-hidden">Previous</span>
+        </button>
+        <button
+            class="carousel-control-next"
+            type="button"
+            data-bs-target="#productCarousel"
+            data-bs-slide="next"
+            style="position: absolute; top: 50%; right: 400px; transform: translateY(-50%); width: 40px; height: 40px">
+            <span
+                class="carousel-control-next-icon"
+                aria-hidden="true"
+                style="background-color: black; border-radius: 30%; padding: 10px"></span>
+            <span class="visually-hidden">Next</span>
+        </button>
+        {% endif %}
+    </div>
+    <div class="row justify-content-center mt-3">
+        <div class="col-md-6">
+            <div class="description" {% if request.LANGUAGE_CODE == 'fa' %} style="direction: rtl;" {% endif %}>
+                <b class="mb-3">{% trans "Details" %}:</b>
+                <p>{{ product.descriptions|getattr:request.LANGUAGE_CODE }}</p>
+                <p>
+                    <a href="{% url 'shop:list' product.category.id product.category.slug %}" class="text-decoration-none">
+                        {{ product.category.names|getattr:request.LANGUAGE_CODE }}
+                    </a>
+                </p>
+                <p style="font-weight: bolder; font-size: larger">{{ product.price|P }}</p>
+                <form action="{% url 'cart:add' product.id %}" method="POST" class="d-flex align-items-start">
+                    {% csrf_token %}
+                    <input style="width: 230px;" type="number" name="quantity" min="1" max="{{product.quantity}}"
+                    placeholder="{% trans "quantity" %} ({% num_trans product.quantity %} {% trans "remaining" %})"
+                    class="numberinput form-control" required id="id_quantity">
+                    <button type="submit" class="btn btn-primary mx-2">
+                        {% trans "Add to cart" %}
+                        <i class="fas fa-shopping-cart"></i>
+                    </button>
+                </form>
+            </div>
+        </div>
+    </div>
+    {% include "components/rec_products.html" %}
+</div>
+{% endblock content %}

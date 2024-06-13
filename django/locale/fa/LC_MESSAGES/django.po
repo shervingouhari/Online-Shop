@@ -1,0 +1,395 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2024-05-07 23:32+0330\n"
+"PO-Revision-Date: 2024-05-07 08:24+0330\n"
+"Last-Translator:   <>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n > 1);\n"
+"X-Translated-Using: django-rosetta 0.10.0\n"
+
+#: .\cart\forms.py:14
+msgid "Quantity exceeds available stock"
+msgstr "مقدار وارد شده از موجودی بیشتر است"
+
+#: .\cart\forms.py:17
+msgid "Quantity must greater than zero"
+msgstr "مقدار وارد شده باید بیشتر از صفر باشد"
+
+#: .\cart\templates\cart_detail.html:7
+msgid "Shopping Cart"
+msgstr "سبد خرید"
+
+#: .\cart\templates\cart_detail.html:13
+msgid "Your shopping cart"
+msgstr "سبد خرید شما"
+
+#: .\cart\templates\cart_detail.html:17 .\order\templates\order_create.html:19
+#: .\shop\models.py:67
+msgid "Image"
+msgstr "تصویر"
+
+#: .\cart\templates\cart_detail.html:18 .\order\templates\order_create.html:20
+#: .\order\templates\order_pdf.html:46 .\shop\models.py:34
+msgid "Product"
+msgstr "محصول"
+
+#: .\cart\templates\cart_detail.html:19 .\order\templates\order_create.html:21
+#: .\order\templates\order_pdf.html:47
+msgid "Quantity"
+msgstr "تعداد"
+
+#: .\cart\templates\cart_detail.html:20
+msgid "Remove"
+msgstr "حذف"
+
+#: .\cart\templates\cart_detail.html:21 .\order\templates\order_create.html:22
+msgid "Unit price"
+msgstr "قیمت واحد"
+
+#: .\cart\templates\cart_detail.html:22 .\order\templates\order_create.html:23
+#: .\order\templates\order_pdf.html:49 .\order\templates\order_pdf.html:71
+msgid "Total Price"
+msgstr "قیمت کل"
+
+#: .\cart\templates\cart_detail.html:53
+msgid "Update"
+msgstr "به روز رسانی"
+
+#: .\cart\templates\cart_detail.html:74 .\order\templates\order_create.html:56
+msgid "Coupon Applied"
+msgstr "کوپن اعمال شد"
+
+#: .\cart\templates\cart_detail.html:84
+msgid "Continue Shopping"
+msgstr "ادامه خرید"
+
+#: .\cart\templates\cart_detail.html:86
+msgid "Order Now"
+msgstr "ثبت سفارش"
+
+#: .\cart\templates\cart_detail.html:93
+msgid "Remove Coupon"
+msgstr "حذف کوپن"
+
+#: .\cart\templates\cart_detail.html:99
+msgid "Apply"
+msgstr "اعمال"
+
+#: .\coupon\apps.py:8 .\coupon\models.py:8
+msgid "Coupon"
+msgstr "کوپن"
+
+#: .\coupon\forms.py:20
+msgid "Invalid coupon code"
+msgstr "کد کوپن نامعتبر است"
+
+#: .\coupon\forms.py:27
+msgid "Discount exceeds total price"
+msgstr "تخفیف بیشتر از قیمت کل است"
+
+#: .\coupon\forms.py:34
+msgid "Coupon Code"
+msgstr "کد کوپن"
+
+#: .\coupon\models.py:9
+msgid "Coupons"
+msgstr "کوپن ها"
+
+#: .\coupon\models.py:23
+msgid "code"
+msgstr "کد"
+
+#: .\coupon\models.py:24
+msgid "is valid from"
+msgstr "معتبر هست از"
+
+#: .\coupon\models.py:25
+msgid "is valid until"
+msgstr "معتبر است تا"
+
+#: .\coupon\models.py:26 .\order\models.py:43
+msgid "discount"
+msgstr "تخفیف"
+
+#: .\coupon\models.py:27
+msgid "max usage"
+msgstr "حداکثر استفاده"
+
+#: .\coupon\models.py:28
+msgid "active"
+msgstr "فعال"
+
+#: .\order\admin.py:15
+msgid "unit price"
+msgstr "قیمت واحد"
+
+#: .\order\admin.py:19 .\order\admin.py:27
+msgid "total price"
+msgstr "قیمت کل"
+
+#: .\order\admin.py:31
+msgid "Export to CSV"
+msgstr "صدور به CSV"
+
+#: .\order\admin.py:57
+msgid "Export to PDF"
+msgstr "صدور به PDF"
+
+#: .\order\apps.py:8 .\order\models.py:10
+msgid "Order"
+msgstr "سفارش"
+
+#: .\order\models.py:11
+msgid "Orders"
+msgstr "سفارشات"
+
+#: .\order\models.py:32
+msgid "awaiting payment"
+msgstr "منتظر پرداخت"
+
+#: .\order\models.py:33
+msgid "awaiting shipment"
+msgstr "منتظر ارسال"
+
+#: .\order\models.py:34
+msgid "awaiting delivery"
+msgstr "منتظر تحویل"
+
+#: .\order\models.py:35
+msgid "delivered"
+msgstr "تحویل داده شده"
+
+#: .\order\models.py:37
+msgid "first name"
+msgstr "نام"
+
+#: .\order\models.py:38
+msgid "last name"
+msgstr "نام خانوادگی"
+
+#: .\order\models.py:39
+msgid "email"
+msgstr "ایمیل"
+
+#: .\order\models.py:40
+msgid "city"
+msgstr "شهر"
+
+#: .\order\models.py:41
+msgid "address"
+msgstr "آدرس"
+
+#: .\order\models.py:42
+msgid "postal code"
+msgstr "کد پستی"
+
+#: .\order\models.py:44 .\shop\models.py:61
+msgid "created"
+msgstr "تاریخ ساخت"
+
+#: .\order\models.py:45
+msgid "update"
+msgstr "تاریخ به روز رسانی"
+
+#: .\order\models.py:46
+msgid "status"
+msgstr "وضعیت"
+
+#: .\order\models.py:51
+msgid "Order Product"
+msgstr "محصول سفارش"
+
+#: .\order\models.py:52
+msgid "Order Products"
+msgstr "محصولات سفارش"
+
+#: .\order\models.py:60
+msgid "order"
+msgstr "سفارش"
+
+#: .\order\models.py:61 .\shop\models.py:76
+msgid "product"
+msgstr "محصول"
+
+#: .\order\models.py:62 .\shop\models.py:59
+#: .\shop\templates\product_detail.html:66
+msgid "quantity"
+msgstr "تعداد"
+
+#: .\order\templates\order_create.html:7
+msgid "Your Order"
+msgstr "سفارش شما"
+
+#: .\order\templates\order_create.html:15
+#: .\order\templates\order_create.html:70
+msgid "Purchase"
+msgstr "خرید"
+
+#: .\order\templates\order_pdf.html:7
+msgid "Receipt"
+msgstr "رسید"
+
+#: .\order\templates\order_pdf.html:21 .\templates\base.html:12
+#: .\templates\components\header.html:4
+msgid "Online Shop"
+msgstr "فروشگاه آنلاین"
+
+#: .\order\templates\order_pdf.html:22
+msgid "Invoice Number"
+msgstr "فاکتور شماره"
+
+#: .\order\templates\order_pdf.html:33
+msgid "Full Name"
+msgstr "نام و نام خانوادگی"
+
+#: .\order\templates\order_pdf.html:34
+msgid "Email"
+msgstr "ایمیل"
+
+#: .\order\templates\order_pdf.html:35
+msgid "City"
+msgstr "شهر"
+
+#: .\order\templates\order_pdf.html:36
+msgid "Address"
+msgstr "آدرس"
+
+#: .\order\templates\order_pdf.html:37
+msgid "Postal Code"
+msgstr "کد پستی"
+
+#: .\order\templates\order_pdf.html:39
+msgid "Discount"
+msgstr "تخفیف"
+
+#: .\order\templates\order_pdf.html:48
+msgid "Unit Price"
+msgstr "قیمت واحد"
+
+#: .\order\templates\order_pdf.html:72
+msgid "Status"
+msgstr "وضعیت"
+
+#: .\order\templates\order_pdf.html:76
+msgid "Thank you for your purchase"
+msgstr "از خرید شما سپاسگزاریم"
+
+#: .\server\settings.py:105
+msgid "English"
+msgstr "انگلیسی"
+
+#: .\server\settings.py:106
+msgid "Farsi"
+msgstr "فارسی"
+
+#: .\shop\admin.py:11
+msgid "decrypted session data"
+msgstr "داده نشست رمزگشایی شده"
+
+#: .\shop\apps.py:8
+msgid "Shop"
+msgstr "فروشگاه"
+
+#: .\shop\models.py:10
+msgid "Category"
+msgstr "دسته بندی"
+
+#: .\shop\models.py:11
+msgid "Categories"
+msgstr "دسته بندی ها"
+
+#: .\shop\models.py:25 .\shop\models.py:52
+msgid "name"
+msgstr "اسم"
+
+#: .\shop\models.py:28 .\shop\models.py:57
+msgid "slug"
+msgstr "اسلاگ"
+
+#: .\shop\models.py:35
+msgid "Products"
+msgstr "محصولات"
+
+#: .\shop\models.py:53
+msgid "description"
+msgstr "توضیحات"
+
+#: .\shop\models.py:56
+msgid "category"
+msgstr "دسته بندی"
+
+#: .\shop\models.py:58
+msgid "price"
+msgstr "قیمت"
+
+#: .\shop\models.py:60
+msgid "available"
+msgstr "موجود"
+
+#: .\shop\models.py:62
+msgid "updated"
+msgstr "تاریخ به روز رسانی"
+
+#: .\shop\models.py:68
+msgid "Images"
+msgstr "تصاویر"
+
+#: .\shop\models.py:77
+msgid "image"
+msgstr "تصویر"
+
+#: .\shop\templates\product_detail.html:55
+msgid "Details"
+msgstr "مشخصات"
+
+#: .\shop\templates\product_detail.html:66
+msgid "remaining"
+msgstr "باقی مانده"
+
+#: .\shop\templates\product_detail.html:69
+msgid "Add to cart"
+msgstr "اضافه کردن به سبد خرید"
+
+#: .\shop\templates\product_list.html:6
+msgid "Product List"
+msgstr "لیست محصولات"
+
+#: .\shop\templates\product_list.html:18
+msgid "All Categories"
+msgstr "تمام دسته بندی ها"
+
+#: .\templates\admin\base_site.html:6
+msgid "Django administration"
+msgstr "مدیریت جنگو"
+
+#: .\templates\components\header.html:37
+msgid "Home"
+msgstr "خانه"
+
+#: .\templates\components\rec_products.html:7
+msgid "Recommended Products"
+msgstr "محصولات پیشنهادی"
+
+#: .\zarinpal\templates\zarinpal_failure.html:8
+msgid "An error occurred"
+msgstr "خطایی رخ داده است"
+
+#: .\zarinpal\templates\zarinpal_success.html:9
+msgid "Your order was placed successfully"
+msgstr "سفارش شما با موفقیت ثبت شد"
+
+#: .\zarinpal\templates\zarinpal_success.html:11
+msgid "your receipt"
+msgstr "رسید شما"

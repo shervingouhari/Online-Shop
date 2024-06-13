@@ -1,0 +1,52 @@
+services:
+    postgres:
+        container_name: online_shop_postgres_container
+        image: postgres:16.3-alpine3.20
+        restart: unless-stopped
+        healthcheck:
+            test:
+                [
+                    "CMD-SHELL",
+                    "pg_isready -h postgres -U ${POSTGRES_USER} -d ${POSTGRES_DB}"
+                ]
+            interval: 5s
+            timeout: 5s
+            retries: 12
+        environment:
+            - POSTGRES_USER=${POSTGRES_USER}
+            - POSTGRES_PASSWORD=${POSTGRES_PASSWORD}
+            - POSTGRES_DB=${POSTGRES_DB}
+        volumes:
+            - online_shop_data_volume:/var/lib/postgresql/data/
+        networks:
+            - online_shop_postgres_network
+        # -- MUST BE REMOVED -- #
+        ports:
+            - 5432:5432
+        # -- MUST BE REMOVED -- #
+    rabitmq:
+        container_name: online_shop_rabitmq_container
+        image: rabbitmq:3.13.3
+        restart: unless-stopped
+        environment:
+            - RABBITMQ_DEFAULT_USER=${RABBITMQ_DEFAULT_USER}
+            - RABBITMQ_DEFAULT_PASS=${RABBITMQ_DEFAULT_PASS}
+        # -- MUST BE REMOVED -- #
+        ports:
+            - 5672:5672
+        # -- MUST BE REMOVED -- #
+    redis:
+        image: redis:7.2.5
+        container_name: online_shop_redis_container
+        restart: unless-stopped
+        # -- MUST BE REMOVED -- #
+        ports:
+            - 6379:6379
+        # -- MUST BE REMOVED -- #
+
+volumes:
+    online_shop_data_volume:
+        name: online_shop_data_volume
+networks:
+    online_shop_postgres_network:
+        name: online_shop_postgres_network

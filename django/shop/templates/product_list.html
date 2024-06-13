@@ -1,0 +1,53 @@
+{% extends "base.html" %}
+{% load i18n %}
+
+
+{% block title %}
+    {% trans "Product List" %}
+{% endblock title %}
+
+
+{% block content %}
+<div class="container-fluid">
+    <div class="row mt-4">
+        <div class="col-3">
+            <div id="list-example" class="list-group">
+                <a
+                    class="list-group-item list-group-item-action {% if not current_category %}active{% endif %}"
+                    href="{% url 'shop:list' %}"
+                    >{% trans "All Categories" %}</a
+                >
+                {% for category in categories %}
+                <a
+                    class="list-group-item list-group-item-action {% if category == current_category %}active{% endif %}"
+                    href="{{category.get_absolute_url}}"
+                    >{{category.name}}</a
+                >
+                {% endfor %}
+            </div>
+        </div>
+        <div class="col-9">
+            <div class="row">
+                {% for product in products %}
+                <div class="col flex-grow-0">
+                    <a href="{{product.get_absolute_url}}" class="text-decoration-none text-secondary">
+                        <div class="card mb-2" style="width: 18rem; height: 300px">
+                            <img
+                                class="card-img-top mb-2"
+                                src="{{product.get_first_image}}"
+                                width="200"
+                                height="200"
+                                alt="Card image cap" />
+                            <div class="card-body">
+                                <h5 class="card-title text-center">{{product.name}}</h5>
+                                <p class="card-text">{{product.price|P}}</p>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock content %}

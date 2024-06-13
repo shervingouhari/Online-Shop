@@ -1,0 +1,81 @@
+{% load i18n %}
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>{% trans "Receipt" %}</title>
+    </head>
+    <body style="font-family: Arial, sans-serif; margin: 0; padding: 20px; background-color: #f2f2f2">
+        {% for order in orders %}
+        <div
+            style="
+                max-width: 700px;
+                margin: 0 auto 50px auto;
+                border: 1px solid #ccc;
+                padding: 20px;
+                background-color: #fff;
+                box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            ">
+            <div style="text-align: center; margin-bottom: 30px">
+                <h2>{% trans "Online Shop" %}</h2>
+                <p>{% trans "Invoice Number" %} {% num_trans order.id %} - {% date_trans order.created %}</p>
+            </div>
+
+            {% get_current_language as LANGUAGE_CODE %}
+            <div
+            {% if LANGUAGE_CODE == 'fa' %}
+            style="margin-bottom: 20px; direction: rtl; text-align: right;"
+            {% else %}
+            style="margin-bottom: 20px;"
+            {% endif %}
+            >
+                <p><strong>{% trans "Full Name" %}: </strong>{{ order.first_name }} {{ order.last_name }}</p>
+                <p><strong>{% trans "Email" %}: </strong>{{ order.email }}</p>
+                <p><strong>{% trans "City" %}: </strong>{{ order.city }}</p>
+                <p><strong>{% trans "Address" %}: </strong>{{ order.address }}</p>
+                <p><strong>{% trans "Postal Code" %}: </strong>{% num_trans order.postal_code %}</p>
+                {% if order.discount > 0 %}
+                <p><strong>{% trans "Discount" %}: </strong>{{ order.discount|P }}</p>
+                {% endif %}
+            </div>
+
+            <table style="border-collapse: collapse; width: 100%; margin-bottom: 20px">
+                <thead>
+                    <tr style="background-color: #f9f9f9">
+                        <th style="border: 1px solid #ddd; padding: 10px; text-align: center;">{% trans "Product" %}</th>
+                        <th style="border: 1px solid #ddd; padding: 10px; text-align: center;">{% trans "Quantity" %}</th>
+                        <th style="border: 1px solid #ddd; padding: 10px; text-align: center;">{% trans "Unit Price" %}</th>
+                        <th style="border: 1px solid #ddd; padding: 10px; text-align: center;">{% trans "Total Price" %}</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for order_product in order.products.all %}
+                    <tr>
+                        <td style="border: 1px solid #ddd; padding: 10px; text-align: center;">{{ order_product.product.name }}</td>
+                        <td style="border: 1px solid #ddd; padding: 10px; text-align: center;">{% num_trans order_product.quantity %}</td>
+                        <td style="border: 1px solid #ddd; padding: 10px; text-align: center;">{{ order_product.product.price|P }}</td>
+                        <td style="border: 1px solid #ddd; padding: 10px; text-align: center;">{{ order_product.get_price|P }}</td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+
+            <div
+            {% if LANGUAGE_CODE == 'fa' %}
+            style="margin-bottom: 20px; direction: rtl; text-align: right;"
+            {% else %}
+            style="margin-bottom: 20px;"
+            {% endif %}
+            >
+                <p><strong>{% trans "Total Price" %}: </strong>{{ order.get_total_price|P }}</p>
+                <p><strong>{% trans "Status" %}: </strong>{{ order.get_status_display }}</p>
+            </div>
+
+            <div style="margin-top: 30px; font-size: 14px; text-align: center; color: #555">
+                <p>{% trans "Thank you for your purchase" %}</p>
+            </div>
+        </div>
+        {% endfor %}
+    </body>
+</html>

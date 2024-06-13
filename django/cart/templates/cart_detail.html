@@ -1,0 +1,105 @@
+{% extends "base.html" %}
+{% load i18n %} 
+{% load crispy_forms_tags %}
+
+
+{% block title %}
+    {% trans "Shopping Cart" %}
+{% endblock title %}
+
+
+{% block content %}
+<div class="m-3">
+    <h1 class="mb-4 text-center">{% trans "Your shopping cart" %}</h1>
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th style="width: 15%">{% trans "Image" %}</th>
+                <th style="width: 15%">{% trans "Product" %}</th>
+                <th style="width: 25%">{% trans "Quantity" %}</th>
+                <th style="width: 15%">{% trans "Remove" %}</th>
+                <th style="width: 15%">{% trans "Unit price" %}</th>
+                <th style="width: 15%">{% trans "Total Price" %}</th>
+            </tr>
+        </thead>
+        <tbody>
+
+            {% for product in cart %}
+            <tr>
+                <td>
+                    <a href="{{product.get_absolute_url}}">
+                        <img
+                            class="rounded-lg shadow"
+                            src="{{product.get_first_image}}"
+                            height="100"
+                            width="100"
+                            alt="" />
+                    </a>
+                </td>
+                <td>{{product.names|getattr:request.LANGUAGE_CODE}}</td>
+                <td>
+                    <form action="{% url 'cart:add' product.id %}" method="POST" class="d-flex align-items-start">
+                        {% csrf_token %}
+                        <input
+                            type="number"
+                            name="quantity"
+                            value="{{product.requested_quantity}}"
+                            min="1"
+                            max="{{product.available_quantity}}"
+                            class="numberinput form-control"
+                            required
+                            id="id_quantity"
+                            style="width: 200px;" />
+                        <input class="btn btn-primary ms-2" type="submit" value="{% trans 'Update' %}" />
+                    </form>
+                </td>
+                <td>
+                    <form action="{% url 'cart:remove' product.id %}" method="POST">
+                        {% csrf_token %}
+                        <button type="submit" class="btn"><i class="fas fa-trash"></i></button>
+                    </form>
+                </td>
+                <td>{{product.unit_price|P}}</td>
+                <td>{{product.total_price|P}}</td>
+            </tr>
+            {% endfor %}
+
+            <tr>
+                <td colspan="5"></td>
+                {% with cart.total_price as total_price %}
+                    {% if cart.coupon %}
+                        <td>
+                            <span class="text-danger text-decoration-line-through">{{ total_price|P }}</span><br>
+                            <span class="text-success">{{ total_price|sub:cart.coupon.discount|P }}</span> 
+                            <span class="badge bg-success">{% trans "Coupon Applied" %}</span>
+                        </td>
+                    {% else %}
+                        <td><span>{{ total_price|P }}</span></td>
+                    {% endif %}
+                {% endwith %}
+            </tr>
+        </tbody>
+    </table>
+    <p>
+        <a href="{% url 'shop:list' %}" class="btn btn-primary">{% trans "Continue Shopping" %}</a>
+        {% if cart|length > 0 %}
+            <a href="{% url 'order:create' %}" class="btn btn-success">{% trans "Order Now" %}</a>
+        {% endif %}
+    </p>
+    {% if cart|length > 0 %}
+        {% if cart.coupon %}
+        <form method="POST" class="d-flex align-items-start">
+            {% csrf_token %}
+            <button type="submit" class="btn btn-danger">{% trans "Remove Coupon" %}</button>
+        </form>
+        {% else %}
+        <form method="POST" class="d-flex align-items-start">
+            {% csrf_token %}
+            {{ form|crispy }}
+            <button type="submit" class="btn btn-primary ms-2">{% trans "Apply" %}</button>
+        </form>
+        {% endif %}
+    {% endif %}
+    {% include "components/rec_products.html" %}
+</div>
+{% endblock content %}

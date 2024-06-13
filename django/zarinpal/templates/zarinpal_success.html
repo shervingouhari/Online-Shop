@@ -1,0 +1,14 @@
+{% extends "base.html" %}
+{% load i18n %}
+
+
+{% block content %}
+<div class="container d-flex justify-content-center align-items-center mt-4">
+    <div class="text-center">
+        <h1 class="text-success m-3">
+            {% trans "Your order was placed successfully" %}
+        </h1>
+        <p class="mx-3">{% trans "your receipt" %}: {% num_trans RefID %}</p>
+    </div>
+</div>
+{% endblock content %}

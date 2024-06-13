@@ -1,0 +1,12 @@
+{% extends "base.html" %}
+{% load i18n %}
+
+
+{% block content %}
+<div class="container d-flex justify-content-center align-items-center mt-4">
+    <div class="text-center">
+        <h1 class="text-danger m-3">{% trans "An error occurred" %}</h1>
+        <p class="mx-3">error: {{error}}</p>
+    </div>
+</div>
+{% endblock content %}
